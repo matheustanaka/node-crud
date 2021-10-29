@@ -31,4 +31,23 @@ app.post("/tasks", async (req, res) => {
     }
 });
 
+//DELETE: deleting inside of tasks route
+app.delete("/tasks/:id", async (req, res) => {
+    try {
+        const taskId = req.params.id;
+
+        const taskToDelete = await TaskModel.findById(taskId);
+
+        if (!taskToDelete) {
+            res.status(500).send("Essa tarefa nao foi encontrada");
+        }
+
+        const deletedTask = await TaskModel.findByIdAndDelete(taskId);
+
+        res.status(200).send(deletedTask);
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+});
+
 app.listen(8000, () => console.log("Listening on port 8000"));
