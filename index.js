@@ -47,6 +47,36 @@ app.post("/tasks", async (req, res) => {
     }
 });
 
+//UPDATE: updating inside of tasks route
+app.patch("/tasks/:id", async (req, res) => {
+    try {
+        const taskId = req.params.id;
+        const taskData = req.body;
+
+        const taskToUpdate = await TaskModel.findById(taskId);
+
+        const allowedUpdates = ["description", "isCompleted"];
+
+        const resquetedUpdates = Object.keys(req.body);
+
+        for (update of resquetedUpdates) {
+            if (allowedUpdates.includes(update)) {
+                taskToUpdate[update] = taskData[update];
+            } else {
+                return res
+                    .status(500)
+                    .send("One or more tasks is not chageables");
+            }
+        }
+
+        await taskToUpdate.save();
+
+        return res.status(200).send(taskToUpdate);
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+});
+
 //DELETE: deleting inside of tasks route
 app.delete("/tasks/:id", async (req, res) => {
     try {
