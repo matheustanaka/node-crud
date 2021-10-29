@@ -37,7 +37,7 @@ Building a CRUD of tasks, here we gonna Create, Read, Update and Delete tasks.
 
 ## Knowledges
 
-Building a CRUD based on [dicasparadevs] (https://www.instagram.com/dicasparadevs/?hl=pt-br) course.
+Building a CRUD based on [dicasparadevs](https://www.instagram.com/dicasparadevs/?hl=pt-br) course.
 
 -   [Full stack Club](https://www.fullstackclub.com.br/)
 -   GitHub [felipemotarocha](https://github.com/felipemotarocha)
