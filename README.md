@@ -2,8 +2,8 @@
 
 ## Table of Contents
 
--   [ABout](#About)
--   [Getting Started](#GettingStarted)
+-   [About](#About)
+-   [Getting-Started](#Getting-Started)
 -   [Technologies](#Technologies)
 -   [Knowledges](#Knowledges)
 -   [Contact](#Contact)
