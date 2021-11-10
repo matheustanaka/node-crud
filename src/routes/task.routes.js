@@ -11,18 +11,7 @@ router.get("/", async (req, res) => {
 
 //READ: reading inside of tasks route
 router.get("/:id", async (req, res) => {
-    try {
-        const taskId = req.params.id;
-        const task = await TaskModel.findById(taskId);
-        //If task is not finded, return a 404 error
-        if (!task) {
-            return res.status(404).send("Essa tarefa não foi encontrada");
-        }
-
-        return res.status(200).send(task);
-    } catch (error) {
-        res.status(500).send(error.message);
-    }
+    return new TaskController(req, res).getTasksById();
 });
 
 //POST: posting inside of tasks route
