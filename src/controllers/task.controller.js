@@ -1,5 +1,6 @@
 const TaskModel = require("../models/task.model");
 const { notFoundError } = require("../errors/mongodb.errors");
+const { notAllowedFieldsToUpdateError } = require("../errors/general.errors");
 class TaskController {
     constructor(req, res) {
         this.req = req;
@@ -51,7 +52,7 @@ class TaskController {
             if (!taskToUpdate) {
                 return notFoundError(this.res);
             }
-            const allowedUpdates = ["description", "isCompleted"];
+            const allowedUpdates = ["isCompleted"];
 
             const resquetedUpdates = Object.keys(this.req.body);
 
@@ -59,9 +60,7 @@ class TaskController {
                 if (allowedUpdates.includes(update)) {
                     taskToUpdate[update] = taskData[update];
                 } else {
-                    return this.res
-                        .status(500)
-                        .send("One or more tasks is not chageables");
+                    return notAllowedFieldsToUpdateError(this.res);
                 }
             }
 
