@@ -16,15 +16,7 @@ router.get("/:id", async (req, res) => {
 
 //POST: posting inside of tasks route
 router.post("/", async (req, res) => {
-    try {
-        const newTask = new TaskModel(req.body);
-
-        await newTask.save();
-
-        res.status(201).send(newTask);
-    } catch (error) {
-        res.send(500).send(error.message);
-    }
+    return new TaskController(req, res).postTasks();
 });
 
 //UPDATE: updating inside of tasks route
