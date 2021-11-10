@@ -6,7 +6,7 @@ const router = express.Router();
 
 //GET: getting inside of tasks route
 router.get("/", async (req, res) => {
-    return new TaskController(req, res).getTasks();
+    return new TaskController(req, res).getAll();
 });
 
 //READ: reading inside of tasks route
@@ -16,37 +16,12 @@ router.get("/:id", async (req, res) => {
 
 //POST: posting inside of tasks route
 router.post("/", async (req, res) => {
-    return new TaskController(req, res).postTasks();
+    return new TaskController(req, res).create();
 });
 
 //UPDATE: updating inside of tasks route
-router.patch("/", async (req, res) => {
-    try {
-        const taskId = req.params.id;
-        const taskData = req.body;
-
-        const taskToUpdate = await TaskModel.findById(taskId);
-
-        const allowedUpdates = ["description", "isCompleted"];
-
-        const resquetedUpdates = Object.keys(req.body);
-
-        for (update of resquetedUpdates) {
-            if (allowedUpdates.includes(update)) {
-                taskToUpdate[update] = taskData[update];
-            } else {
-                return res
-                    .status(500)
-                    .send("One or more tasks is not chageables");
-            }
-        }
-
-        await taskToUpdate.save();
-
-        return res.status(200).send(taskToUpdate);
-    } catch (error) {
-        res.status(500).send(error.message);
-    }
+router.patch("/:id", async (req, res) => {
+    return new TaskController(req, res).update();
 });
 
 //DELETE: deleting inside of tasks route
