@@ -1,5 +1,6 @@
 const TaskModel = require("../models/task.model");
-const { notFoundError } = require("../errors/mongodb.errors");
+const { Mongoose } = require("mongoose");
+const { notFoundError, objectIdError } = require("../errors/mongodb.errors");
 const { notAllowedFieldsToUpdateError } = require("../errors/general.errors");
 class TaskController {
     constructor(req, res) {
@@ -38,7 +39,7 @@ class TaskController {
 
             this.res.status(201).send(newTask);
         } catch (error) {
-            this.res.send(500).send(error.message);
+            this.res.status(500).send(error.message);
         }
     }
 
