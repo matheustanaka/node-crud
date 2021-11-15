@@ -15,7 +15,7 @@ Building a CRUD of tasks, here we gonna Create, Read, Update and Delete tasks.
 ## Getting Started
 
     # Mongodb
-    - You have to create a database to save our data.
+    - You have to create a database to save your data.
 
     # Install Dependencies
     - $ npm install express
@@ -25,7 +25,7 @@ Building a CRUD of tasks, here we gonna Create, Read, Update and Delete tasks.
 
     # Starting Server
     - $ nodemon start:dev
-    - You will see the server on localhost link, there you have to use Postman or Insomnia.
+    - You will see the server on localhost link, you have to use Postman or Insomnia.
     - http://localhost:8000
 
 ### Technologies
