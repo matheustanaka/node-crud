@@ -8,6 +8,7 @@ const TaskModel = require("./src/models/task.model");
 
 dotenv.config();
 const app = express();
+//using cors
 app.use(cors());
 app.use(express.json());
 connectToDatabase();
