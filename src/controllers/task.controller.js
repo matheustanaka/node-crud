@@ -53,11 +53,11 @@ class TaskController {
             if (!taskToUpdate) {
                 return notFoundError(this.res);
             }
+
             const allowedUpdates = ["isCompleted"];
+            const requestedUpdates = Object.keys(taskData);
 
-            const resquetedUpdates = Object.keys(this.req.body);
-
-            for (const update of resquetedUpdates) {
+            for (const update of requestedUpdates) {
                 if (allowedUpdates.includes(update)) {
                     taskToUpdate[update] = taskData[update];
                 } else {
@@ -66,10 +66,13 @@ class TaskController {
             }
 
             await taskToUpdate.save();
-
             return this.res.status(200).send(taskToUpdate);
         } catch (error) {
-            this.res.status(500).send(error.message);
+            if (error instanceof mongoose.Error.CastError) {
+                return objectIdCastError(this.res);
+            }
+
+            return this.res.status(500).send(error.message);
         }
     }
 
