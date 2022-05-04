@@ -4,9 +4,9 @@ const cors = require("cors")
 const TaskRouter = require("./src/routes/task.routes")
 
 const connectToDatabase = require("./src/database/mongoose.database");
-const TaskModel = require("./src/models/task.model");
 
-dotenv.config();
+dotenv.config({ path: '.env'});
+
 const app = express();
 //using cors
 app.use(cors());
