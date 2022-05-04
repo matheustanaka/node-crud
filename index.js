@@ -5,7 +5,7 @@ const TaskRouter = require("./src/routes/task.routes")
 
 const connectToDatabase = require("./src/database/mongoose.database");
 
-dotenv.config({ path: '.env'});
+dotenv.config({path: '.env'});
 
 const app = express();
 //using cors
