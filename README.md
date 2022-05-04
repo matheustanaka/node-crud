@@ -10,7 +10,7 @@
 
 ## About
 
-Building a CRUD of tasks, here we gonna Create, Read, Update and Delete tasks.
+Building a CRUD of tasks, here we gonna Create, Read, Update and Delete tasks
 
 ## Getting Started
 
